@@ -1,0 +1,14 @@
+[project]
+name = "ldif-reader"
+version = "0.1.0"
+description = "Parses LDAP Data Interchange Format files into records, handling base64 and URL values and folded lines."
+requires-python = ">=3.10"
+dependencies = []
+readme = "README.md"
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
