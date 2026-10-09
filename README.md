@@ -28,3 +28,10 @@ The trade-off: this is a reader, not a writer. It does not validate attribute na
 A continuation line in LDIF begins with exactly one space. That space is the fold marker and is stripped; any further leading spaces are part of the value. `ldif_reader` preserves those additional spaces rather than collapsing runs of whitespace, so values round-trip faithfully.
 
 If a base64 value does not decode to valid UTF-8 (the LDIF spec mandates UTF-8), parsing fails with `LDIFParseError` rather than silently substituting a replacement character.
+
+## Performance
+
+The window keeps a bounded buffer, so `push` is constant time and memory does not
+grow with the length of the stream. `peak` and `trough` are linear in the window
+size, which is the trade that keeps `push` cheap.
+
